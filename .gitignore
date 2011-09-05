@@ -1,0 +1,8 @@
+build
+.idea
+.svn
+*.pbxuser
+*.mode1v3
+xcuserdata
+*.xcworkspace
+OmnitureAppMeasurement-BlackBerry.src

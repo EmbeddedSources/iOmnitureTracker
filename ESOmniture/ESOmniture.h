@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface RIOmniture : NSObject
+@interface ESOmniture : NSObject
 
 @property ( nonatomic, copy ) NSString* account;
 @property ( nonatomic, copy ) NSString* dc;

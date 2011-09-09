@@ -4,8 +4,14 @@
 
 -(NSString*)stringByAddingOmnitureEscapes
 {
-   return [ [ self stringByReplacingOccurrencesOfString: @" " withString: @"%20" ]
-           stringByReplacingOccurrencesOfString: @":" withString: @"%3A" ];
+   NSString* unsafe_ = @" <>#%'\";?:&=+$,{}|\\^~[]`!()";
+   NSString* result_ = (NSString*)CFURLCreateStringByAddingPercentEscapes( kCFAllocatorDefault
+                                                                          , (CFStringRef)self
+                                                                          , NULL
+                                                                          , (CFStringRef)unsafe_
+                                                                          , kCFStringEncodingUTF8 );
+
+   return [ result_ autorelease ];
 }
 
 @end

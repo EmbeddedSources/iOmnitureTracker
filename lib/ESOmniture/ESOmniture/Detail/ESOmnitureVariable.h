@@ -17,20 +17,29 @@ NSString* ESOmnitureVariableProp( NSUInteger index_ );
 }
 
 @property ( nonatomic, copy, readonly ) NSString* name;
-@property ( nonatomic, copy ) NSString* value;
+@property ( nonatomic, copy, readonly ) NSString* value;
+
++(id)variableWithName:( NSString* )name_
+                value:( NSString* )value_;
+
+-(NSString*)argumentValue;
 
 @end
 
-@interface ESOmnitureContext : NSObject
-{
-@private
-   NSArray* _variables;
-}
 
-+(id)context;
+@interface ESMutableOmnitureVariable : ESOmnitureVariable
 
--(ESOmnitureVariable*)variableWithName:( NSString* )name_;
+@property ( nonatomic, copy ) NSString* value;
 
--(NSString*)urlArguments;
++(id)variableWithName:( NSString* )name_;
+
++(id)eVarWithIndex:( NSUInteger )index_;
+
++(id)propWithIndex:( NSUInteger )index_;
+
+@end
+
+
+@interface ESRequiredOmnitureVariable : ESMutableOmnitureVariable
 
 @end

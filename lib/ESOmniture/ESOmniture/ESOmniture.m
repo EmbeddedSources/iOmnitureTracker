@@ -1,28 +1,26 @@
 #import "ESOmniture.h"
 
 #import "ESOmnitureVariable.h"
+#import "ESOmnitureContext.h"
 
-#import "NSString+OmnitureEscape.h"
+#import "UIDevice+OmnitureUserAgent.h"
+#import "NSBundle+OmnitureApplicationIdentifier.h"
+#import "NSDate+OmnitureTimestamp.h"
 
 @interface ESOmniture ()
 
 @property ( nonatomic, retain ) ESOmnitureContext* context;
-
--(NSString*)variableValueWithName:( NSString* )name_;
-
--(void)setVariableValue:( NSString* )value_
-               withName:( NSString* )name_;
 
 @end
 
 #define ES_OMNITURE_SYNTHESIZE_VARIABLE( getterName, setterName, variableName )\
 -(NSString*)getterName\
 {\
-   return [ self variableValueWithName: variableName ];\
+   return [ self.context variableValueWithName: variableName ];\
 }\
 -(void)setterName:( NSString* )value_\
 {\
-   [ self setVariableValue: value_ withName: variableName ];\
+   [ self.context setVariableValue: value_ withName: variableName ];\
 }
 
 #define ES_OMNITURE_SYNTHESIZE_EVAR( index ) ES_OMNITURE_SYNTHESIZE_VARIABLE( eVar##index, setEVar##index, ESOmnitureVariableEVar( index ) )
@@ -173,63 +171,16 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
    return self;
 }
 
--(NSString*)variableValueWithName:( NSString* )name_
-{
-   return [ self.context variableWithName: name_ ].value;
-}
-
--(void)setVariableValue:( NSString* )value_
-               withName:( NSString* )name_
-{
-   [ self.context variableWithName: name_ ].value = value_;
-}
-
--(NSString*)timestamp
-{
-   NSDate* date_ = [ NSDate date ];
-   
-   NSUInteger flags_ = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit
-   |  NSHourCalendarUnit | NSMinuteCalendarUnit | NSSecondCalendarUnit | NSWeekdayCalendarUnit;
-   
-   NSCalendar* calendar_ = [ [ [ NSCalendar alloc ] initWithCalendarIdentifier: NSGregorianCalendar ] autorelease ];
-   NSLocale* locale_ = [ [ [ NSLocale alloc ] initWithLocaleIdentifier: @"en_US_POSIX" ] autorelease ];
-   calendar_.locale = locale_;
-   
-   NSDateComponents* dc_ = [ calendar_ components: flags_ fromDate: date_ ];
-   
-   NSInteger minutes_offset_ = - [ [ NSTimeZone defaultTimeZone ] secondsFromGMT ] / 60;
-   
-   NSString* timestamp_ = [ NSString stringWithFormat: @"%d/%d/%d %d:%d:%d %d %d"
-                           , dc_.day
-                           , dc_.month - 1
-                           , dc_.year
-                           , dc_.hour
-                           , dc_.minute
-                           , dc_.second
-                           , dc_.weekday - 1
-                           , minutes_offset_
-                           ];
-   
-   return timestamp_;
-}
-
--(NSString*)deviceType
-{
-   //!Should be fixed
-   return @"OIP-2.0";
-}
-
 -(NSURL*)trackURL
 {
-   [ self setVariableValue: [ self timestamp ] withName: ESOmnitureVariableTimestamp ];
+   [ self.context setVariableValue: [ [ NSDate date ] omnitureTimestamp ] withName: ESOmnitureVariableTimestamp ];
 
-   NSString* url_string_ = [ NSString stringWithFormat: @"http://%@.%@.2o7.net/b/ss/%@/0/%@/s%d?%@"
+   NSString* url_string_ = [ NSString stringWithFormat: @"http://%@.%@.2o7.net/b/ss/%@/0/OIP-2.0/s%d?%@"
                             , self.visitorNamespace
                             , self.dc
                             , self.account
-                            , [ self deviceType ]
                             , rand()
-                            , [ [ self.context urlArguments ] stringByAddingOmnitureEscapes ] ];
+                            , [ self.context urlArguments ] ];
 
    NSURL* url_ = [ NSURL URLWithString: url_string_ ];
 
@@ -241,12 +192,6 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
    return url_;
 }
 
--(NSString*)userAgent
-{
-   //!Should be fixed
-   return @"Mozilla/5.0 (iPad; U; CPU iPhone OS 4_3_5 like Mac OS X; en-US) insider-iPad/1.9.0";
-}
-
 -(void)track
 {
    NSURL* url_ = [ self trackURL ];
@@ -254,7 +199,9 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
       return;
 
    NSMutableURLRequest* url_request_ = [ NSMutableURLRequest requestWithURL: url_ ];
-   [ url_request_ setValue: [ self userAgent ] forHTTPHeaderField: @"User-Agent" ];
+
+   NSString* user_agent_ = [ [ UIDevice currentDevice ] omnitureUserAgentWithAppIdentifier: [ NSBundle applicationIdentifier ] ];
+   [ url_request_ setValue: user_agent_ forHTTPHeaderField: @"User-Agent" ];
 
    [ NSURLConnection connectionWithRequest: url_request_
                                   delegate: self ];

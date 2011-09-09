@@ -152,6 +152,7 @@
 				1D60588D0D05DD3D006BFB54 /* Resources */,
 				1D60588E0D05DD3D006BFB54 /* Sources */,
 				1D60588F0D05DD3D006BFB54 /* Frameworks */,
+				5347713A141A20EF00E02E4A /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -213,6 +214,22 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		5347713A141A20EF00E02E4A /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "#\n#/bin/bash\n#\n## Dump XCode variables\n\nmkdir -p \"/tmp/ESOmnitureTestBuild\"\nCI_TEST_PRODUCT_DIR_FILE=/tmp/ESOmnitureTestBuild/CI_TEST_PRODUCT_DIR.txt\n\ncd \"$BUILT_PRODUCTS_DIR\"\ncd ..\necho $PWD > \"$CI_TEST_PRODUCT_DIR_FILE\"\n\nexit 0\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		1D60588E0D05DD3D006BFB54 /* Sources */ = {

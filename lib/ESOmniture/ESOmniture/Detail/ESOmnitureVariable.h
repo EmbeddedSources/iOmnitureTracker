@@ -18,6 +18,7 @@ NSString* ESOmnitureVariableProp( NSUInteger index_ );
 
 @property ( nonatomic, copy, readonly ) NSString* name;
 @property ( nonatomic, copy, readonly ) NSString* value;
+@property ( nonatomic, assign, readonly ) BOOL isDefined;
 
 +(id)variableWithName:( NSString* )name_
                 value:( NSString* )value_;

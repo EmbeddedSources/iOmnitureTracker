@@ -58,9 +58,14 @@ NSString* ESOmnitureVariableProp( NSUInteger index_ )
    return [ [ [ self alloc ] initWithName: name_ value: value_ ] autorelease ];
 }
 
+-(BOOL)isDefined
+{
+   return [ self.value length ] > 0;
+}
+
 -(NSString*)argumentValue
 {
-   if ( self.value )
+   if ( [ self isDefined ] )
    {
       return [ self.name stringByAppendingFormat: @"=%@", [ self.value stringByAddingOmnitureEscapes ] ];
    }

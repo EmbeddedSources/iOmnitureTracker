@@ -36,15 +36,16 @@
                 );
    
    [ context_ setVariableValue: nil withName: ESOmnitureVariableEVar( 3 ) ];
+   [ context_ setVariableValue: @"" withName: ESOmnitureVariableProp( 1 ) ];
    
    NSString* expected_value2_ = [ NSString stringWithFormat: @"AQB=1&ndh=1&t=t_value&vid=vid_value&ce=UTF-8"
-                                @"&ns=ns_value&pageName=pageName_value&events=events_value&c1=prop1_value"
+                                @"&ns=ns_value&pageName=pageName_value&events=events_value"
                                 @"&c2=prop2_value&v1=eVar1_value&s=%dx%d&c=24&AQE=1"
                                 , (int)screen_bounds_.size.width
                                 , (int)screen_bounds_.size.height ];
    
    GHAssertTrue( [ [ context_ urlArguments ] isEqualToString: expected_value2_ ]
-                , @"Order of variables during serialization"
+                , @"Nil or empty values are not used during serialization"
                 );
 }
 

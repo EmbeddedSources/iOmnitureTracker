@@ -73,4 +73,31 @@
    GHAssertNoThrow( [ required_variable_ argumentValue ], @"Required with value" );
 }
 
+-(void)testDefineState
+{
+   ESMutableOmnitureVariable* variable_ = [ ESMutableOmnitureVariable variableWithName: @"name" ];
+
+   GHAssertFalse( [ variable_ isDefined ]
+                , @"By default variable is not defined"
+                );
+   
+   variable_.value = @"value";
+
+   GHAssertTrue( [ variable_ isDefined ]
+                 , @"Defined with value"
+                 );
+
+   variable_.value = nil;
+
+   GHAssertFalse( [ variable_ isDefined ]
+                , @"Nil is undefined"
+                );
+   
+   variable_.value = @"";
+   
+   GHAssertFalse( [ variable_ isDefined ]
+                 , @"Empty string is undefined"
+                 );
+}
+
 @end

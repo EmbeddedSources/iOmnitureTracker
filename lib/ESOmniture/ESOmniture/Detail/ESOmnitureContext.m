@@ -209,7 +209,7 @@
    
    for ( ESOmnitureVariable* variable_ in self.variables )
    {
-      if ( variable_.value )
+      if ( [ variable_ isDefined ] )
       {
          [ description_ addObject: [ NSString stringWithFormat: @"\t%@ = '%@';", variable_.name, variable_.value ] ];
       }

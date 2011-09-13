@@ -19,6 +19,7 @@
 		D620B3191418D883002D9F58 /* ESOmnitureVariableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B3181418D883002D9F58 /* ESOmnitureVariableTest.m */; };
 		D6EEBF401418DCEF00B6181A /* ESOmnitureContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */; };
 		D6EEC04E1418EF0800B6181A /* TimestampTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEC04D1418EF0800B6181A /* TimestampTest.m */; };
+		D6F2FC2C141F62F2002B4D45 /* ESOmnitureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		D620B3181418D883002D9F58 /* ESOmnitureVariableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureVariableTest.m; sourceTree = "<group>"; };
 		D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureContextTest.m; sourceTree = "<group>"; };
 		D6EEC04D1418EF0800B6181A /* TimestampTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimestampTest.m; sourceTree = "<group>"; };
+		D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureTest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +83,7 @@
 				D620B3181418D883002D9F58 /* ESOmnitureVariableTest.m */,
 				D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */,
 				D6EEC04D1418EF0800B6181A /* TimestampTest.m */,
+				D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				D620B3191418D883002D9F58 /* ESOmnitureVariableTest.m in Sources */,
 				D6EEBF401418DCEF00B6181A /* ESOmnitureContextTest.m in Sources */,
 				D6EEC04E1418EF0800B6181A /* TimestampTest.m in Sources */,
+				D6F2FC2C141F62F2002B4D45 /* ESOmnitureTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

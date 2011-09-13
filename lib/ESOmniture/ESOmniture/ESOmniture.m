@@ -1,5 +1,7 @@
 #import "ESOmniture.h"
 
+#import "ESOmnitureDelegate.h"
+
 #import "ESOmnitureVariable.h"
 #import "ESOmnitureContext.h"
 
@@ -28,14 +30,17 @@
 
 @implementation ESOmniture
 
+@synthesize delegate = _delegate;
 @synthesize context = _context;
-
 @synthesize account = _account;
 @synthesize dc = _dc;
 @synthesize debugTracking = _debug_tracking;
+@synthesize usePlugins = _use_plugins;
+
 
 ES_OMNITURE_SYNTHESIZE_VARIABLE( visitorNamespace  , setVisitorNamespace, ESOmnitureVariableVisitorNamespace )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( visitorId         , setVisitorId       , ESOmnitureVariableVisitorId )
+ES_OMNITURE_SYNTHESIZE_VARIABLE( charSet           , setCharSet         , ESOmnitureVariableCharset )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( pageName          , setPageName        , ESOmnitureVariablePageName )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( events            , setEvents          , ESOmnitureVariableEvents )
 
@@ -174,6 +179,11 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
 -(NSURL*)trackURL
 {
    [ self.context setVariableValue: [ [ NSDate date ] omnitureTimestamp ] withName: ESOmnitureVariableTimestamp ];
+
+   if ( self.usePlugins )
+   {
+      [ self.delegate omnitureDoPlugins: self ];
+   }
 
    NSString* url_string_ = [ NSString stringWithFormat: @"http://%@.%@.2o7.net/b/ss/%@/0/OIP-2.0/s%d?%@"
                             , self.visitorNamespace

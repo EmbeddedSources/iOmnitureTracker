@@ -45,7 +45,7 @@
                     , [ ESOmnitureVariable variableWithName: @"ndh" value: @"1" ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableTimestamp ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableVisitorId value: [ self defaultVisitorId ] ]
-                    , [ ESRequiredOmnitureVariable variableWithName: @"ce" value: @"UTF-8" ]
+                    , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableCharset value: @"UTF-8" ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableVisitorNamespace ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariablePageName value: [ NSBundle applicationIdentifier ] ]
                     , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableEvents ]

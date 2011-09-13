@@ -7,6 +7,7 @@ NSString* const ESOmnitureVariableVisitorId = @"vid";
 NSString* const ESOmnitureVariableVisitorNamespace = @"ns";
 NSString* const ESOmnitureVariablePageName = @"pageName";
 NSString* const ESOmnitureVariableEvents = @"events";
+NSString* const ESOmnitureVariableCharset = @"ce";
 
 NSString* ESOmnitureVariableEVar( NSUInteger index_ )
 {

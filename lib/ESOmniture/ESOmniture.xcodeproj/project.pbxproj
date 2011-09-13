@@ -19,6 +19,7 @@
 		D66629CE141615EA001B9BD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66629CD141615EA001B9BD9 /* UIKit.framework */; };
 		D6EEC0491418EE4100B6181A /* NSDate+OmnitureTimestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = D6EEC0471418EE4100B6181A /* NSDate+OmnitureTimestamp.h */; };
 		D6EEC04A1418EE4100B6181A /* NSDate+OmnitureTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEC0481418EE4100B6181A /* NSDate+OmnitureTimestamp.m */; };
+		D6F2FC17141F5DB1002B4D45 /* ESOmnitureDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		D66629CD141615EA001B9BD9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D6EEC0471418EE4100B6181A /* NSDate+OmnitureTimestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+OmnitureTimestamp.h"; sourceTree = "<group>"; };
 		D6EEC0481418EE4100B6181A /* NSDate+OmnitureTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+OmnitureTimestamp.m"; sourceTree = "<group>"; };
+		D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureDelegate.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +101,7 @@
 				D66629BE14161599001B9BD9 /* Detail */,
 				D66629C314161599001B9BD9 /* ESOmniture.h */,
 				D66629C414161599001B9BD9 /* ESOmniture.m */,
+				D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */,
 			);
 			path = ESOmniture;
 			sourceTree = "<group>";
@@ -132,6 +135,7 @@
 				D66629C914161599001B9BD9 /* ESOmniture.h in Headers */,
 				D620B3051418D6BB002D9F58 /* ESOmnitureContext.h in Headers */,
 				D6EEC0491418EE4100B6181A /* NSDate+OmnitureTimestamp.h in Headers */,
+				D6F2FC17141F5DB1002B4D45 /* ESOmnitureDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

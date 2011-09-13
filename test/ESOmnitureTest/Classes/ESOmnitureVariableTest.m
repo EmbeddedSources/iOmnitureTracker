@@ -28,6 +28,10 @@
    GHAssertTrue( [ ESOmnitureVariableEvents isEqualToString: @"events" ]
                 , @"ESOmnitureVariableEvents"
                 );
+   
+   GHAssertTrue( [ ESOmnitureVariableCharset isEqualToString: @"ce" ]
+                , @"ESOmnitureVariableCharset"
+                );
 
    GHAssertTrue( [ ESOmnitureVariableEVar( 12 ) isEqualToString: @"v12" ]
                 , @"ESOmnitureVariableEVar"

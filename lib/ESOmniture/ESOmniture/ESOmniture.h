@@ -1,15 +1,21 @@
 #import <Foundation/Foundation.h>
 
+@protocol ESOmnitureDelegate;
+
 @interface ESOmniture : NSObject
+
+@property ( nonatomic, assign ) id< ESOmnitureDelegate > delegate;
 
 @property ( nonatomic, copy ) NSString* account;
 @property ( nonatomic, copy ) NSString* dc;
 @property ( nonatomic, copy ) NSString* visitorNamespace;
 @property ( nonatomic, copy ) NSString* visitorId;
+@property ( nonatomic, copy ) NSString* charSet;
 @property ( nonatomic, copy ) NSString* pageName;
 @property ( nonatomic, copy ) NSString* events;
 
 @property ( nonatomic, assign ) BOOL debugTracking;
+@property ( nonatomic, assign ) BOOL usePlugins;
 
 @property ( nonatomic, copy ) NSString* prop1;
 @property ( nonatomic, copy ) NSString* prop2;

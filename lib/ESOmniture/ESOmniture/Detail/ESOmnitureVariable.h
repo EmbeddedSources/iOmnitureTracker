@@ -5,6 +5,7 @@ extern NSString* const ESOmnitureVariableVisitorId;
 extern NSString* const ESOmnitureVariableVisitorNamespace;
 extern NSString* const ESOmnitureVariablePageName;
 extern NSString* const ESOmnitureVariableEvents;
+extern NSString* const ESOmnitureVariableCharset;
 
 NSString* ESOmnitureVariableEVar( NSUInteger index_ );
 NSString* ESOmnitureVariableProp( NSUInteger index_ );

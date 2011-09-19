@@ -33,6 +33,22 @@
                 , @"ESOmnitureVariableCharset"
                 );
 
+   GHAssertTrue( [ ESOmnitureVariableLinkType isEqualToString: @"pe" ]
+                , @"ESOmnitureVariableLinkType"
+                );
+
+   GHAssertTrue( [ ESOmnitureVariableLinkURL isEqualToString: @"pev1" ]
+                , @"ESOmnitureVariableLinkURL"
+                );
+   
+   GHAssertTrue( [ ESOmnitureVariableLinkName isEqualToString: @"pev2" ]
+                , @"ESOmnitureVariableLinkName"
+                );
+   
+   GHAssertTrue( [ ESOmnitureVariableVideoReports isEqualToString: @"pev3" ]
+                , @"ESOmnitureVariableVideoReports"
+                );
+
    GHAssertTrue( [ ESOmnitureVariableEVar( 12 ) isEqualToString: @"v12" ]
                 , @"ESOmnitureVariableEVar"
                 );

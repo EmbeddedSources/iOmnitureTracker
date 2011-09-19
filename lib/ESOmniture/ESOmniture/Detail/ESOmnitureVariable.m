@@ -8,6 +8,10 @@ NSString* const ESOmnitureVariableVisitorNamespace = @"ns";
 NSString* const ESOmnitureVariablePageName = @"pageName";
 NSString* const ESOmnitureVariableEvents = @"events";
 NSString* const ESOmnitureVariableCharset = @"ce";
+NSString* const ESOmnitureVariableLinkType = @"pe";
+NSString* const ESOmnitureVariableLinkURL = @"pev1";
+NSString* const ESOmnitureVariableLinkName = @"pev2";
+NSString* const ESOmnitureVariableVideoReports = @"pev3";
 
 NSString* ESOmnitureVariableEVar( NSUInteger index_ )
 {
@@ -57,6 +61,12 @@ NSString* ESOmnitureVariableProp( NSUInteger index_ )
                 value:( NSString* )value_
 {
    return [ [ [ self alloc ] initWithName: name_ value: value_ ] autorelease ];
+}
+
+-(id)copyWithZone:( NSZone* )zone_
+{
+   return [ [ [ self class ] allocWithZone: zone_ ] initWithName: self.name
+                                                           value: self.value ];
 }
 
 -(BOOL)isDefined

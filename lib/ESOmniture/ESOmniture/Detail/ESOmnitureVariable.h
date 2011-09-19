@@ -6,11 +6,15 @@ extern NSString* const ESOmnitureVariableVisitorNamespace;
 extern NSString* const ESOmnitureVariablePageName;
 extern NSString* const ESOmnitureVariableEvents;
 extern NSString* const ESOmnitureVariableCharset;
+extern NSString* const ESOmnitureVariableLinkType;
+extern NSString* const ESOmnitureVariableLinkURL;
+extern NSString* const ESOmnitureVariableLinkName;
+extern NSString* const ESOmnitureVariableVideoReports;
 
 NSString* ESOmnitureVariableEVar( NSUInteger index_ );
 NSString* ESOmnitureVariableProp( NSUInteger index_ );
 
-@interface ESOmnitureVariable : NSObject
+@interface ESOmnitureVariable : NSObject< NSCopying >
 {
 @private
    NSString* _name;

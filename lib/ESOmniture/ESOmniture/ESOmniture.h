@@ -1,5 +1,9 @@
 #import <Foundation/Foundation.h>
 
+extern NSString* const ESOmnitureCustomLink;
+extern NSString* const ESOmnitureDownloadLink;
+extern NSString* const ESOmnitureExitLink;
+
 @protocol ESOmnitureDelegate;
 
 @interface ESOmniture : NSObject
@@ -119,5 +123,15 @@
 @property ( nonatomic, copy ) NSString* eVar50;
 
 -(void)track;
+-(void)track:( NSDictionary* )variable_overrides_;
+
+-(void)trackLink:( NSString* )link_url_
+        linkType:( NSString* )link_type_
+        linkName:( NSString* )link_name_;
+
+-(void)trackLink:( NSString* )link_url_
+        linkType:( NSString* )link_type_
+        linkName:( NSString* )link_name_
+variableOverrides:( NSDictionary* )variable_overrides_;
 
 @end

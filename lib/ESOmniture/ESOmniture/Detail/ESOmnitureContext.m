@@ -32,9 +32,38 @@
    [ super dealloc ];
 }
 
+-(id)initWithVariables:( NSArray* )variables_
+{
+   if ( !( self = [ super init ] ) )
+      return nil;
+
+   self.variables = variables_;
+
+   return self;
+}
+
+-(id)init
+{
+   return [ self initWithVariables: nil ];
+}
+
 +(id)context
 {
    return [ [ [ self alloc ] init ] autorelease ];
+}
+
+-(id)copyWithZone:( NSZone* )zone_
+{
+   NSArray* variables_copy_ = _variables == nil
+      ? nil
+      : [ [ [ NSArray alloc ] initWithArray: _variables copyItems: YES ] autorelease ];//Deep copy
+
+   return [ [ [ self class ] allocWithZone: zone_ ] initWithVariables: variables_copy_ ];
+}
+
++(id)contextWithContext:( ESOmnitureContext* )context_
+{
+   return [ [ context_ copy ] autorelease ];
 }
 
 -(NSArray*)variables
@@ -48,6 +77,10 @@
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableCharset value: @"UTF-8" ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariableVisitorNamespace ]
                     , [ ESRequiredOmnitureVariable variableWithName: ESOmnitureVariablePageName value: [ NSBundle applicationIdentifier ] ]
+                    , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableLinkType ]
+                    , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableLinkURL ]
+                    , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableLinkName ]
+                    , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableVideoReports ]
                     , [ ESMutableOmnitureVariable variableWithName: ESOmnitureVariableEvents ]
                     //Properties
                     , [ ESMutableOmnitureVariable propWithIndex: 1 ]

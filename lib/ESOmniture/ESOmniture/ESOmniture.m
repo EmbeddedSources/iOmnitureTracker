@@ -9,9 +9,19 @@
 #import "NSBundle+OmnitureApplicationIdentifier.h"
 #import "NSDate+OmnitureTimestamp.h"
 
+NSString* const ESOmnitureCustomLink = @"o";
+NSString* const ESOmnitureDownloadLink = @"d";
+NSString* const ESOmnitureExitLink = @"e";
+
 @interface ESOmniture ()
 
 @property ( nonatomic, retain ) ESOmnitureContext* context;
+
+@property ( nonatomic, copy ) NSString* timestamp;
+@property ( nonatomic, copy ) NSString* pe;
+@property ( nonatomic, copy ) NSString* pev1;
+@property ( nonatomic, copy ) NSString* pev2;
+@property ( nonatomic, copy ) NSString* pev3;
 
 @end
 
@@ -43,6 +53,12 @@ ES_OMNITURE_SYNTHESIZE_VARIABLE( visitorId         , setVisitorId       , ESOmni
 ES_OMNITURE_SYNTHESIZE_VARIABLE( charSet           , setCharSet         , ESOmnitureVariableCharset )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( pageName          , setPageName        , ESOmnitureVariablePageName )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( events            , setEvents          , ESOmnitureVariableEvents )
+
+ES_OMNITURE_SYNTHESIZE_VARIABLE( timestamp         , setTimestamp       , ESOmnitureVariableTimestamp )
+ES_OMNITURE_SYNTHESIZE_VARIABLE( pe                , setPe              , ESOmnitureVariableLinkType )
+ES_OMNITURE_SYNTHESIZE_VARIABLE( pev1              , setPev1            , ESOmnitureVariableLinkURL )
+ES_OMNITURE_SYNTHESIZE_VARIABLE( pev2              , setPev2            , ESOmnitureVariableLinkName )
+ES_OMNITURE_SYNTHESIZE_VARIABLE( pev3              , setPev3            , ESOmnitureVariableVideoReports )
 
 ES_OMNITURE_SYNTHESIZE_EVAR( 1 )
 ES_OMNITURE_SYNTHESIZE_EVAR( 2 )
@@ -178,7 +194,7 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
 
 -(NSURL*)trackURL
 {
-   [ self.context setVariableValue: [ [ NSDate date ] omnitureTimestamp ] withName: ESOmnitureVariableTimestamp ];
+   self.timestamp = [ [ NSDate date ] omnitureTimestamp ];
 
    if ( self.usePlugins )
    {
@@ -207,14 +223,73 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
    NSURL* url_ = [ self trackURL ];
    if ( !url_ )
       return;
-
+   
    NSMutableURLRequest* url_request_ = [ NSMutableURLRequest requestWithURL: url_ ];
-
+   
    NSString* user_agent_ = [ [ UIDevice currentDevice ] omnitureUserAgentWithAppIdentifier: [ NSBundle applicationIdentifier ] ];
    [ url_request_ setValue: user_agent_ forHTTPHeaderField: @"User-Agent" ];
-
+   
    [ NSURLConnection connectionWithRequest: url_request_
                                   delegate: self ];
+}
+
+-(void)overrideVariables:( NSDictionary* )variables_
+{
+   for ( NSString* name_ in variables_ )
+   {
+      [ self setValue: [ variables_ objectForKey: name_ ]
+               forKey: name_ ];
+   }
+}
+
+//returns old context
+-(ESOmnitureContext*)swapContext:( ESOmnitureContext* )context_
+{
+   ESOmnitureContext* previous_context_ = [ self.context retain ];
+   self.context = context_;
+   return [ previous_context_ autorelease ];
+}
+
+-(void)track:( NSDictionary* )variable_overrides_
+{
+   ESOmnitureContext* previous_context_ = [ self swapContext: [ ESOmnitureContext contextWithContext: self.context ] ];
+   [ self overrideVariables: variable_overrides_ ];
+   [ self track ];
+   [ self swapContext: previous_context_ ];
+}
+
+-(void)trackLink:( NSString* )link_url_
+        linkType:( NSString* )link_type_
+        linkName:( NSString* )link_name_
+variableOverrides:( NSDictionary* )variable_overrides_
+{
+   NSMutableDictionary* variables_ = variable_overrides_
+      ? [ NSMutableDictionary dictionaryWithDictionary: variable_overrides_ ]
+      : [ NSMutableDictionary dictionary ];
+
+   [ variables_ setObject: [ @"lnk_" stringByAppendingString: link_type_ ] forKey: ESOmnitureVariableLinkType ];
+
+   if ( link_name_ )
+   {
+      [ variables_ setObject: link_name_ forKey: ESOmnitureVariableLinkName ];
+   }
+
+   if ( link_url_ )
+   {
+      [ variables_ setObject: link_url_ forKey: ESOmnitureVariableLinkURL ];
+   }
+
+   [ self track: variables_ ];
+}
+
+-(void)trackLink:( NSString* )link_url_
+        linkType:( NSString* )link_type_
+        linkName:( NSString* )link_name_
+{
+   [ self trackLink: link_url_
+           linkType: link_type_
+           linkName: link_name_
+  variableOverrides: nil ];
 }
 
 #pragma mark NSURLConnectionDelegate

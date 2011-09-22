@@ -10,14 +10,19 @@
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		D6024BE61417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D6024BE41417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m */; };
 		D6024BEA1417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D6024BE81417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m */; };
-		D620B3051418D6BB002D9F58 /* ESOmnitureContext.h in Headers */ = {isa = PBXBuildFile; fileRef = D620B3031418D6BB002D9F58 /* ESOmnitureContext.h */; };
 		D620B3061418D6BB002D9F58 /* ESOmnitureContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B3041418D6BB002D9F58 /* ESOmnitureContext.m */; };
 		D66629C614161599001B9BD9 /* NSString+OmnitureEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = D66629C014161599001B9BD9 /* NSString+OmnitureEscape.m */; };
 		D66629C814161599001B9BD9 /* ESOmnitureVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = D66629C214161599001B9BD9 /* ESOmnitureVariable.m */; };
 		D66629C914161599001B9BD9 /* ESOmniture.h in Headers */ = {isa = PBXBuildFile; fileRef = D66629C314161599001B9BD9 /* ESOmniture.h */; };
 		D66629CA14161599001B9BD9 /* ESOmniture.m in Sources */ = {isa = PBXBuildFile; fileRef = D66629C414161599001B9BD9 /* ESOmniture.m */; };
 		D66629CE141615EA001B9BD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D66629CD141615EA001B9BD9 /* UIKit.framework */; };
-		D6EEC0491418EE4100B6181A /* NSDate+OmnitureTimestamp.h in Headers */ = {isa = PBXBuildFile; fileRef = D6EEC0471418EE4100B6181A /* NSDate+OmnitureTimestamp.h */; };
+		D67659D11428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = D67659CF1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m */; };
+		D6765CB71429E50C00EB6329 /* ESOmnitureTrackPointFactory.m in Sources */ = {isa = PBXBuildFile; fileRef = D6765CB51429E50C00EB6329 /* ESOmnitureTrackPointFactory.m */; };
+		D676F5AD14277625008E3A2A /* ESOmnitureMedia.h in Headers */ = {isa = PBXBuildFile; fileRef = D676F5AB14277624008E3A2A /* ESOmnitureMedia.h */; };
+		D676F5AE14277625008E3A2A /* ESOmnitureMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = D676F5AC14277625008E3A2A /* ESOmnitureMedia.m */; };
+		D676F5C414277E12008E3A2A /* ESOmnitureMediaPlayback.m in Sources */ = {isa = PBXBuildFile; fileRef = D676F5C214277E12008E3A2A /* ESOmnitureMediaPlayback.m */; };
+		D676F5DA14278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = D676F5D814278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m */; };
+		D676F5F2142884B4008E3A2A /* ESOmnitureMediaDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D676F5F1142884B4008E3A2A /* ESOmnitureMediaDelegate.h */; };
 		D6EEC04A1418EE4100B6181A /* NSDate+OmnitureTimestamp.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEC0481418EE4100B6181A /* NSDate+OmnitureTimestamp.m */; };
 		D6F2FC17141F5DB1002B4D45 /* ESOmnitureDelegate.h in Headers */ = {isa = PBXBuildFile; fileRef = D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */; };
 /* End PBXBuildFile section */
@@ -40,6 +45,18 @@
 		D66629C314161599001B9BD9 /* ESOmniture.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmniture.h; sourceTree = "<group>"; };
 		D66629C414161599001B9BD9 /* ESOmniture.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmniture.m; sourceTree = "<group>"; };
 		D66629CD141615EA001B9BD9 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D67659CE1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaPlaybackInfo.h; sourceTree = "<group>"; };
+		D67659CF1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMediaPlaybackInfo.m; sourceTree = "<group>"; };
+		D6765CB41429E50C00EB6329 /* ESOmnitureTrackPointFactory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureTrackPointFactory.h; sourceTree = "<group>"; };
+		D6765CB51429E50C00EB6329 /* ESOmnitureTrackPointFactory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureTrackPointFactory.m; sourceTree = "<group>"; };
+		D676F5AB14277624008E3A2A /* ESOmnitureMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMedia.h; sourceTree = "<group>"; };
+		D676F5AC14277625008E3A2A /* ESOmnitureMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMedia.m; sourceTree = "<group>"; };
+		D676F5C114277E12008E3A2A /* ESOmnitureMediaPlayback.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaPlayback.h; sourceTree = "<group>"; };
+		D676F5C214277E12008E3A2A /* ESOmnitureMediaPlayback.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMediaPlayback.m; sourceTree = "<group>"; };
+		D676F5D714278DC0008E3A2A /* ESOmnitureMediaTrackPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaTrackPoint.h; sourceTree = "<group>"; };
+		D676F5D814278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMediaTrackPoint.m; sourceTree = "<group>"; };
+		D676F5E91428707A008E3A2A /* ESOmnitureMediaPlaybackDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaPlaybackDelegate.h; sourceTree = "<group>"; };
+		D676F5F1142884B4008E3A2A /* ESOmnitureMediaDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaDelegate.h; sourceTree = "<group>"; };
 		D6EEC0471418EE4100B6181A /* NSDate+OmnitureTimestamp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+OmnitureTimestamp.h"; sourceTree = "<group>"; };
 		D6EEC0481418EE4100B6181A /* NSDate+OmnitureTimestamp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+OmnitureTimestamp.m"; sourceTree = "<group>"; };
 		D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureDelegate.h; sourceTree = "<group>"; };
@@ -102,6 +119,9 @@
 				D66629C314161599001B9BD9 /* ESOmniture.h */,
 				D66629C414161599001B9BD9 /* ESOmniture.m */,
 				D6F2FC16141F5DB1002B4D45 /* ESOmnitureDelegate.h */,
+				D676F5AB14277624008E3A2A /* ESOmnitureMedia.h */,
+				D676F5AC14277625008E3A2A /* ESOmnitureMedia.m */,
+				D676F5F1142884B4008E3A2A /* ESOmnitureMediaDelegate.h */,
 			);
 			path = ESOmniture;
 			sourceTree = "<group>";
@@ -121,6 +141,15 @@
 				D6024BE81417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m */,
 				D6EEC0471418EE4100B6181A /* NSDate+OmnitureTimestamp.h */,
 				D6EEC0481418EE4100B6181A /* NSDate+OmnitureTimestamp.m */,
+				D676F5C114277E12008E3A2A /* ESOmnitureMediaPlayback.h */,
+				D676F5C214277E12008E3A2A /* ESOmnitureMediaPlayback.m */,
+				D676F5E91428707A008E3A2A /* ESOmnitureMediaPlaybackDelegate.h */,
+				D676F5D714278DC0008E3A2A /* ESOmnitureMediaTrackPoint.h */,
+				D676F5D814278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m */,
+				D67659CE1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.h */,
+				D67659CF1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m */,
+				D6765CB41429E50C00EB6329 /* ESOmnitureTrackPointFactory.h */,
+				D6765CB51429E50C00EB6329 /* ESOmnitureTrackPointFactory.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -133,9 +162,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				D66629C914161599001B9BD9 /* ESOmniture.h in Headers */,
-				D620B3051418D6BB002D9F58 /* ESOmnitureContext.h in Headers */,
-				D6EEC0491418EE4100B6181A /* NSDate+OmnitureTimestamp.h in Headers */,
 				D6F2FC17141F5DB1002B4D45 /* ESOmnitureDelegate.h in Headers */,
+				D676F5AD14277625008E3A2A /* ESOmnitureMedia.h in Headers */,
+				D676F5F2142884B4008E3A2A /* ESOmnitureMediaDelegate.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -196,6 +225,11 @@
 				D6024BEA1417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m in Sources */,
 				D620B3061418D6BB002D9F58 /* ESOmnitureContext.m in Sources */,
 				D6EEC04A1418EE4100B6181A /* NSDate+OmnitureTimestamp.m in Sources */,
+				D676F5AE14277625008E3A2A /* ESOmnitureMedia.m in Sources */,
+				D676F5C414277E12008E3A2A /* ESOmnitureMediaPlayback.m in Sources */,
+				D676F5DA14278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m in Sources */,
+				D67659D11428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m in Sources */,
+				D6765CB71429E50C00EB6329 /* ESOmnitureTrackPointFactory.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

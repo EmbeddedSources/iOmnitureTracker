@@ -4,6 +4,7 @@
 
 #import "ESOmnitureVariable.h"
 #import "ESOmnitureContext.h"
+#import "ESOmnitureMedia.h"
 
 #import "UIDevice+OmnitureUserAgent.h"
 #import "NSBundle+OmnitureApplicationIdentifier.h"
@@ -46,7 +47,7 @@ NSString* const ESOmnitureExitLink = @"e";
 @synthesize dc = _dc;
 @synthesize debugTracking = _debug_tracking;
 @synthesize usePlugins = _use_plugins;
-
+@synthesize Media = _media;
 
 ES_OMNITURE_SYNTHESIZE_VARIABLE( visitorNamespace  , setVisitorNamespace, ESOmnitureVariableVisitorNamespace )
 ES_OMNITURE_SYNTHESIZE_VARIABLE( visitorId         , setVisitorId       , ESOmnitureVariableVisitorId )
@@ -172,6 +173,8 @@ ES_OMNITURE_SYNTHESIZE_PROP( 50 )
 
 -(void)dealloc
 {
+   _media.omniture = nil;
+   [ _media release ];
    [ _context release ];
    [ _account release ];
    [ _dc release ];
@@ -290,6 +293,15 @@ variableOverrides:( NSDictionary* )variable_overrides_
            linkType: link_type_
            linkName: link_name_
   variableOverrides: nil ];
+}
+
+-(ESOmnitureMedia*)Media
+{
+   if ( !_media )
+   {
+      _media = [ [ ESOmnitureMedia alloc ] initWithOmniture: self ];
+   }
+   return _media;
 }
 
 #pragma mark NSURLConnectionDelegate

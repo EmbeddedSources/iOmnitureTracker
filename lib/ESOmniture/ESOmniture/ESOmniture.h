@@ -4,6 +4,8 @@ extern NSString* const ESOmnitureCustomLink;
 extern NSString* const ESOmnitureDownloadLink;
 extern NSString* const ESOmnitureExitLink;
 
+@class ESOmnitureMedia;
+
 @protocol ESOmnitureDelegate;
 
 @interface ESOmniture : NSObject
@@ -121,6 +123,8 @@ extern NSString* const ESOmnitureExitLink;
 @property ( nonatomic, copy ) NSString* eVar48;
 @property ( nonatomic, copy ) NSString* eVar49;
 @property ( nonatomic, copy ) NSString* eVar50;
+
+@property ( nonatomic, retain, readonly ) ESOmnitureMedia* Media;
 
 -(void)track;
 -(void)track:( NSDictionary* )variable_overrides_;

@@ -17,6 +17,7 @@
 		D620B2BA1418CE1B002D9F58 /* UserAgentTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B2B91418CE1B002D9F58 /* UserAgentTest.m */; };
 		D620B2E71418D503002D9F58 /* ApplicationIdentifierTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B2E61418D503002D9F58 /* ApplicationIdentifierTest.m */; };
 		D620B3191418D883002D9F58 /* ESOmnitureVariableTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B3181418D883002D9F58 /* ESOmnitureVariableTest.m */; };
+		D676F6111428867A008E3A2A /* ESOmnitureMediaTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D676F6101428867A008E3A2A /* ESOmnitureMediaTest.m */; };
 		D6EEBF401418DCEF00B6181A /* ESOmnitureContextTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */; };
 		D6EEC04E1418EF0800B6181A /* TimestampTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6EEC04D1418EF0800B6181A /* TimestampTest.m */; };
 		D6F2FC2C141F62F2002B4D45 /* ESOmnitureTest.m in Sources */ = {isa = PBXBuildFile; fileRef = D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */; };
@@ -53,6 +54,7 @@
 		D620B2B91418CE1B002D9F58 /* UserAgentTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAgentTest.m; sourceTree = "<group>"; };
 		D620B2E61418D503002D9F58 /* ApplicationIdentifierTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationIdentifierTest.m; sourceTree = "<group>"; };
 		D620B3181418D883002D9F58 /* ESOmnitureVariableTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureVariableTest.m; sourceTree = "<group>"; };
+		D676F6101428867A008E3A2A /* ESOmnitureMediaTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMediaTest.m; sourceTree = "<group>"; };
 		D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureContextTest.m; sourceTree = "<group>"; };
 		D6EEC04D1418EF0800B6181A /* TimestampTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TimestampTest.m; sourceTree = "<group>"; };
 		D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureTest.m; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				D6EEBF3F1418DCEF00B6181A /* ESOmnitureContextTest.m */,
 				D6EEC04D1418EF0800B6181A /* TimestampTest.m */,
 				D6F2FC2B141F62F2002B4D45 /* ESOmnitureTest.m */,
+				D676F6101428867A008E3A2A /* ESOmnitureMediaTest.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -247,6 +250,7 @@
 				D6EEBF401418DCEF00B6181A /* ESOmnitureContextTest.m in Sources */,
 				D6EEC04E1418EF0800B6181A /* TimestampTest.m in Sources */,
 				D6F2FC2C141F62F2002B4D45 /* ESOmnitureTest.m in Sources */,
+				D676F6111428867A008E3A2A /* ESOmnitureMediaTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

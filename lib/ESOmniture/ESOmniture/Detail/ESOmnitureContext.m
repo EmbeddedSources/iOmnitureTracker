@@ -56,7 +56,7 @@
 {
    NSArray* variables_copy_ = _variables == nil
       ? nil
-      : [ [ [ NSArray alloc ] initWithArray: _variables copyItems: YES ] autorelease ];//Deep copy
+      : [ [ [ NSArray allocWithZone: zone_ ] initWithArray: _variables copyItems: YES ] autorelease ];//Deep copy
 
    return [ [ [ self class ] allocWithZone: zone_ ] initWithVariables: variables_copy_ ];
 }

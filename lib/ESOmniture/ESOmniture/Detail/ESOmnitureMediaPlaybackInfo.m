@@ -7,6 +7,11 @@
 
 @property ( nonatomic, retain ) NSMutableDictionary* info;
 
+-(void)addTrackPoints:( NSDictionary* )points_;
+
+-(void)addTrackPoint:( ESOmnitureMediaTrackPoint* )point_
+           forOffset:( NSTimeInterval )offset_;
+
 @end
 
 @implementation ESOmnitureMediaPlaybackInfo

@@ -2,6 +2,8 @@
 
 #import "ESOmnitureMediaDelegate.h"
 
+#import "ESOmniture.h"
+
 #import "ESOmnitureMediaPlayback.h"
 #import "ESOmnitureMediaPlaybackDelegate.h"
 #import "ESOmnitureMediaTrackPoint.h"
@@ -103,21 +105,55 @@
 
 #pragma mark ESOmnitureMediaPlaybackDelegate
 
--(void)mediaPlayback:( ESOmnitureMediaPlayback* )playback_
-      didMoveToPoint:( ESOmnitureMediaTrackPoint* )track_point_
+-(BOOL)shouldTrackPoint:( ESOmnitureMediaTrackPoint* )point_
+           fromPlayback:( ESOmnitureMediaPlayback* )playback_
 {
-   if ( track_point_.type == ESOmnitureMediaTrackPointOpen )
+   switch ( point_.type )
    {
+      case ESOmnitureMediaTrackPointCuepoint:
+         return self.trackAtCuePoints;
+      case ESOmnitureMediaTrackPointMilestone:
+      case ESOmnitureMediaTrackPointSeconds:
+      case ESOmnitureMediaTrackPointOpen:
+      case ESOmnitureMediaTrackPointClose:
+         return YES;
+      case ESOmnitureMediaTrackPointMonitor:
+      case ESOmnitureMediaTrackPointPlay:
+      case ESOmnitureMediaTrackPointStop:
+         return NO;
    }
-   else if ( track_point_.type == ESOmnitureMediaTrackPointCuepoint )
+
+   return NO;
+}
+
+-(ESOmnitureMediaTrackPoint*)pointForTrackFromSet:( NSSet* )track_points_
+                                         playback:( ESOmnitureMediaPlayback* )playback_
+{
+   for ( ESOmnitureMediaTrackPoint* point_ in track_points_ )
    {
-      if ( self.trackAtCuePoints )
+      if ( [ self shouldTrackPoint: point_ fromPlayback: playback_ ] )
       {
+         return point_;
       }
    }
 
-   [ self.delegate media: self
-          didChangeState: [ ESOmnitureMediaState mediaStateWithPlayback: playback_ trackPoint: track_point_ ] ];
+   return nil;
+}
+
+-(void)mediaPlayback:( ESOmnitureMediaPlayback* )playback_
+     didMoveToPoints:( NSSet* )track_points_
+{
+   ESOmnitureMediaTrackPoint* track_point_ = [ self pointForTrackFromSet: track_points_ playback: playback_ ];
+   if ( track_point_ )
+   {
+      [ playback_ trackInOmniture: self.omniture ];
+   }
+
+   for ( ESOmnitureMediaTrackPoint* point_ in track_points_ )
+   {
+      ESOmnitureMediaState* media_state_ = [ ESOmnitureMediaState mediaStateWithPlayback: playback_ trackPoint: track_point_ ];
+      [ self.delegate media: self didChangeState: media_state_ ];
+   }
 }
 
 @end

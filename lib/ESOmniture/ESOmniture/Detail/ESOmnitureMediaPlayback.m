@@ -2,8 +2,11 @@
 
 #import "ESOmnitureMediaPlaybackDelegate.h"
 
+#import "ESOmniture.h"
+
 #import "ESOmnitureMediaTrackPoint.h"
 #import "ESOmnitureMediaPlaybackInfo.h"
+#import "ESOmnitureMediaPlaybackAction.h"
 
 @interface ESOmnitureMediaPlayback ()
 
@@ -14,6 +17,7 @@
 @property ( nonatomic, retain ) ESOmnitureMediaPlaybackInfo* trackInfo;
 @property ( nonatomic, assign ) NSTimeInterval offset;
 @property ( nonatomic, assign ) NSTimeInterval timePlayed;
+@property ( nonatomic, retain ) NSMutableArray* actions;
 @property ( nonatomic, assign ) NSTimeInterval nextPointOffset;
 @property ( nonatomic, assign ) NSTimer* currentTimer;
 
@@ -30,6 +34,7 @@
 @synthesize trackInfo = _track_info;
 @synthesize offset = _offset;
 @synthesize timePlayed = _time_played;
+@synthesize actions = _actions;
 @synthesize nextPointOffset = _next_point_offset;
 @synthesize currentTimer = _current_timer;
 @synthesize delegate = _delegate;
@@ -40,6 +45,7 @@
    [ _name release ];
    [ _player_name release ];
    [ _track_info release ];
+   [ _actions release ];
    [ _current_timer invalidate ];
 
    [ super dealloc ];
@@ -53,6 +59,7 @@
    if ( !( self = [ super init ] ) )
       return nil;
 
+   self.actions = [ NSMutableArray array ];
    self.name = name_;
    self.playerName = player_name_;
    self.length = length_;
@@ -127,11 +134,13 @@
    if ( self.nextPointOffset >= self.length )
       return;
 
+   [ self.actions addObject: [ ESOmnitureMediaPlaybackAction playActionWithOffset: offset_ ] ];
+
    if ( !self.openTime )
    {
       self.openTime = [ NSDate date ];
       [ self.delegate mediaPlayback: self
-                     didMoveToPoint: [ ESOmnitureMediaTrackPoint openPoint ] ];
+                    didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint openPoint ] ] ];
    }
 
    [ self startTimerWithDelay: self.nextPointOffset - offset_ ];
@@ -141,9 +150,11 @@
 {
    self.offset = offset_;
    [ self invalidateCurrentTimer ];
-   
+
+   [ self.actions addObject: [ ESOmnitureMediaPlaybackAction stopActionWithOffset: offset_ ] ];
+
    [ self.delegate mediaPlayback: self
-                  didMoveToPoint: [ ESOmnitureMediaTrackPoint stopPoint ] ];
+                  didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint stopPoint ] ] ];
 }
 
 -(void)close
@@ -151,7 +162,42 @@
    [ self stopWithOffset: self.offset ];
 
    [ self.delegate mediaPlayback: self
-                  didMoveToPoint: [ ESOmnitureMediaTrackPoint closePoint ] ];
+                 didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint closePoint ] ] ];
+}
+
+-(NSString*)videoReport
+{
+   NSArray* report_info_ = [ NSArray arrayWithObjects: self.name
+                            , [ NSString stringWithFormat: @"%d", (int)self.length ]
+                            , self.playerName
+                            , [ NSString stringWithFormat: @"%d", (int)self.timePlayed ]
+                            , [ NSString stringWithFormat: @"%d", (int)[ self.openTime timeIntervalSince1970 ] ]
+                            , [ self.actions componentsJoinedByString: @"" ]
+                            , nil ];
+
+   return [ report_info_ componentsJoinedByString: @"--**--" ];
+}
+
+-(void)trackInOmniture:( ESOmniture* )omniture_
+{
+   ESOmnitureMediaPlaybackAction* last_action_ = [ self.actions lastObject ];
+   
+   NSMutableArray* new_actions_ = [ NSMutableArray array ];
+
+   if ( ![ last_action_.name isEqualToString: ESOmnitureMediaStopActionName ] )
+   {
+      ESOmnitureMediaPlaybackAction* track_action_ = [ ESOmnitureMediaPlaybackAction trackActionWithOffset: self.offset ];
+      [ self.actions addObject: track_action_ ];
+      [ omniture_ trackVideoReport: [ self videoReport ] ];
+
+      [ new_actions_ addObject: track_action_ ];
+   }
+   else
+   {
+      [ omniture_ trackVideoReport: [ self videoReport ] ];
+   }
+
+   self.actions = new_actions_;
 }
 
 #pragma mark NSTimer
@@ -175,12 +221,7 @@
    }
 
    NSSet* points_ = [ self.trackInfo trackPointsForOffset: self.offset ];
-
-   for ( ESOmnitureMediaTrackPoint* point_ in points_ )
-   {
-      [ self.delegate mediaPlayback: self
-                     didMoveToPoint: point_ ];
-   }
+   [ self.delegate mediaPlayback: self didMoveToPoints: points_ ];
 }
 
 @end

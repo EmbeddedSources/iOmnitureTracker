@@ -66,6 +66,21 @@
    return [ [ context_ copy ] autorelease ];
 }
 
+-(id)contextWithVideoVariables
+{
+   ESOmnitureContext* context_ = [ [ self class ] context ];
+
+   for ( ESOmnitureVariable* variable_ in _variables )//!Should be redone
+   {
+      if ( [ variable_ isKindOfClass: [ ESRequiredOmnitureVariable class ] ] )
+      {
+         [ context_ setVariableValue: variable_.value withName: variable_.name ];
+      }
+   }
+
+   return context_;
+}
+
 -(NSArray*)variables
 {
    if ( !_variables )

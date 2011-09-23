@@ -295,6 +295,18 @@ variableOverrides:( NSDictionary* )variable_overrides_
   variableOverrides: nil ];
 }
 
+-(void)trackVideoReport:( NSString* )video_report_
+{
+   ESOmnitureContext* previous_context_ = [ self swapContext: [ self.context contextWithVideoVariables ] ];
+
+   self.pe = @"m_o";//!!!Not only this action is sent
+   self.pev3 = video_report_;
+
+   [ self track ];
+
+   [ self swapContext: previous_context_ ];
+}
+
 -(ESOmnitureMedia*)Media
 {
    if ( !_media )

@@ -138,4 +138,6 @@ extern NSString* const ESOmnitureExitLink;
         linkName:( NSString* )link_name_
 variableOverrides:( NSDictionary* )variable_overrides_;
 
+-(void)trackVideoReport:( NSString* )video_report_;
+
 @end

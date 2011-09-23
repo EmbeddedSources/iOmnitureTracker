@@ -9,11 +9,6 @@
                  milestones:( NSString* )milestones_
                trackSeconds:( NSTimeInterval )track_seconds_;
 
--(void)addTrackPoints:( NSDictionary* )points_;
-
--(void)addTrackPoint:( ESOmnitureMediaTrackPoint* )point_
-           forOffset:( NSTimeInterval )offset_;
-
 -(NSSet*)trackPointsForOffset:( NSTimeInterval )offset_;
 
 @end

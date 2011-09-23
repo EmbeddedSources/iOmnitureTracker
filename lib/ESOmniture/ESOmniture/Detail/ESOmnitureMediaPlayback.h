@@ -1,5 +1,7 @@
 #import <Foundation/Foundation.h>
 
+@class ESOmniture;
+
 @protocol ESOmnitureMediaPlaybackDelegate;
 
 @interface ESOmnitureMediaPlayback : NSObject
@@ -24,5 +26,7 @@
 -(void)stopWithOffset:( NSTimeInterval )offset_;
 
 -(void)close;
+
+-(void)trackInOmniture:( ESOmniture* )omniture_;
 
 @end

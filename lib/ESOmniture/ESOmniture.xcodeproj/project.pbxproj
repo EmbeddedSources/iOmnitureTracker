@@ -11,6 +11,7 @@
 		D6024BE61417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D6024BE41417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m */; };
 		D6024BEA1417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m in Sources */ = {isa = PBXBuildFile; fileRef = D6024BE81417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m */; };
 		D620B3061418D6BB002D9F58 /* ESOmnitureContext.m in Sources */ = {isa = PBXBuildFile; fileRef = D620B3041418D6BB002D9F58 /* ESOmnitureContext.m */; };
+		D62CC6D0142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D62CC6CE142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.m */; };
 		D66629C614161599001B9BD9 /* NSString+OmnitureEscape.m in Sources */ = {isa = PBXBuildFile; fileRef = D66629C014161599001B9BD9 /* NSString+OmnitureEscape.m */; };
 		D66629C814161599001B9BD9 /* ESOmnitureVariable.m in Sources */ = {isa = PBXBuildFile; fileRef = D66629C214161599001B9BD9 /* ESOmnitureVariable.m */; };
 		D66629C914161599001B9BD9 /* ESOmniture.h in Headers */ = {isa = PBXBuildFile; fileRef = D66629C314161599001B9BD9 /* ESOmniture.h */; };
@@ -38,6 +39,8 @@
 		D6024BE81417A8E3008A8687 /* UIDevice+OmnitureUserAgent.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIDevice+OmnitureUserAgent.m"; sourceTree = "<group>"; };
 		D620B3031418D6BB002D9F58 /* ESOmnitureContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureContext.h; sourceTree = "<group>"; };
 		D620B3041418D6BB002D9F58 /* ESOmnitureContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureContext.m; sourceTree = "<group>"; };
+		D62CC6CD142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureMediaPlaybackAction.h; sourceTree = "<group>"; };
+		D62CC6CE142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ESOmnitureMediaPlaybackAction.m; sourceTree = "<group>"; };
 		D66629BF14161599001B9BD9 /* NSString+OmnitureEscape.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+OmnitureEscape.h"; sourceTree = "<group>"; };
 		D66629C014161599001B9BD9 /* NSString+OmnitureEscape.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+OmnitureEscape.m"; sourceTree = "<group>"; };
 		D66629C114161599001B9BD9 /* ESOmnitureVariable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmnitureVariable.h; sourceTree = "<group>"; };
@@ -150,6 +153,8 @@
 				D67659CF1428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m */,
 				D6765CB41429E50C00EB6329 /* ESOmnitureTrackPointFactory.h */,
 				D6765CB51429E50C00EB6329 /* ESOmnitureTrackPointFactory.m */,
+				D62CC6CD142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.h */,
+				D62CC6CE142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.m */,
 			);
 			path = Detail;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				D676F5DA14278DC0008E3A2A /* ESOmnitureMediaTrackPoint.m in Sources */,
 				D67659D11428BC3D00EB6329 /* ESOmnitureMediaPlaybackInfo.m in Sources */,
 				D6765CB71429E50C00EB6329 /* ESOmnitureTrackPointFactory.m in Sources */,
+				D62CC6D0142B45BF00D1E828 /* ESOmnitureMediaPlaybackAction.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

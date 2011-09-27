@@ -4,6 +4,9 @@ extern NSString* const ESOmnitureCustomLink;
 extern NSString* const ESOmnitureDownloadLink;
 extern NSString* const ESOmnitureExitLink;
 
+extern NSString* const ESOmnitureVideoReportStart;
+extern NSString* const ESOmnitureVideoReportOthers;
+
 @class ESOmnitureMedia;
 
 @protocol ESOmnitureDelegate;
@@ -138,6 +141,7 @@ extern NSString* const ESOmnitureExitLink;
         linkName:( NSString* )link_name_
 variableOverrides:( NSDictionary* )variable_overrides_;
 
--(void)trackVideoReport:( NSString* )video_report_;
+-(void)trackVideoReport:( NSString* )video_report_
+             reportType:( NSString* )report_type_;
 
 @end

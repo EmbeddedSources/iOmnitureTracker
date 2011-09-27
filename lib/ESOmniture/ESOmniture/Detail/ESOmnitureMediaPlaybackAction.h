@@ -8,8 +8,10 @@ extern NSString* const ESOmnitureMediaTrackActionName;
 
 @property ( nonatomic, retain, readonly ) NSString* name;
 @property ( nonatomic, assign, readonly ) NSTimeInterval offset;
+@property ( nonatomic, retain, readonly ) NSString* reportType;
 
 +(id)trackActionWithOffset:( NSTimeInterval )offset_;
++(id)openActionWithOffset:( NSTimeInterval )offset_;
 +(id)playActionWithOffset:( NSTimeInterval )offset_;
 +(id)stopActionWithOffset:( NSTimeInterval )offset_;
 

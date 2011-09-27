@@ -6,6 +6,20 @@
 	objectVersion = 45;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		D62CCA9A1432177300D1E828 /* Appledoc */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = D62CCAA41432178000D1E828 /* Build configuration list for PBXAggregateTarget "Appledoc" */;
+			buildPhases = (
+				D62CCA991432177300D1E828 /* Build Documentation */,
+			);
+			dependencies = (
+			);
+			name = Appledoc;
+			productName = Appledoc;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		AACBBE4A0F95108600F1A2B1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AACBBE490F95108600F1A2B1 /* Foundation.framework */; };
 		D6024BE61417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m in Sources */ = {isa = PBXBuildFile; fileRef = D6024BE41417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m */; };
@@ -32,7 +46,6 @@
 		AA747D9E0F9514B9006C5449 /* ESOmniture_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ESOmniture_Prefix.pch; sourceTree = SOURCE_ROOT; };
 		AACBBE490F95108600F1A2B1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D2AAC07E0554694100DB518D /* libESOmniture.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libESOmniture.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		D6024B0E141793B9008A8687 /* TODO */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = TODO; sourceTree = "<group>"; };
 		D6024BE31417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSBundle+OmnitureApplicationIdentifier.h"; sourceTree = "<group>"; };
 		D6024BE41417A786008A8687 /* NSBundle+OmnitureApplicationIdentifier.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSBundle+OmnitureApplicationIdentifier.m"; sourceTree = "<group>"; };
 		D6024BE71417A8E3008A8687 /* UIDevice+OmnitureUserAgent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIDevice+OmnitureUserAgent.h"; sourceTree = "<group>"; };
@@ -94,7 +107,6 @@
 				0867D69AFE84028FC02AAC07 /* Frameworks */,
 				034768DFFF38A50411DB9C8B /* Products */,
 				D66629CD141615EA001B9BD9 /* UIKit.framework */,
-				D6024B0E141793B9008A8687 /* TODO */,
 			);
 			name = ESOmniture;
 			sourceTree = "<group>";
@@ -214,9 +226,28 @@
 			projectRoot = "";
 			targets = (
 				D2AAC07D0554694100DB518D /* ESOmniture */,
+				D62CCA9A1432177300D1E828 /* Appledoc */,
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D62CCA991432177300D1E828 /* Build Documentation */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Build Documentation";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/appledoc \\\n--keep-undocumented-members \\\n--keep-undocumented-objects \\\n--logformat xcode \\\n--exit-threshold 2 \\\n--ignore Detail \\\n--ignore .m \\\n--project-name ESOmniture \\\n--project-company \"Embedded Sources\" \\\n--company-id com.embeddedsources \\\n--output ./appledoc .\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D2AAC07B0554694100DB518D /* Sources */ = {
@@ -301,6 +332,27 @@
 			};
 			name = Release;
 		};
+		D62CCA9B1432177300D1E828 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = NO;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				PRODUCT_NAME = Appledoc;
+			};
+			name = Debug;
+		};
+		D62CCA9C1432177300D1E828 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_ENABLE_FIX_AND_CONTINUE = NO;
+				PRODUCT_NAME = Appledoc;
+				ZERO_LINK = NO;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -318,6 +370,15 @@
 			buildConfigurations = (
 				1DEB922308733DC00010E9CD /* Debug */,
 				1DEB922408733DC00010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D62CCAA41432178000D1E828 /* Build configuration list for PBXAggregateTarget "Appledoc" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D62CCA9B1432177300D1E828 /* Debug */,
+				D62CCA9C1432177300D1E828 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

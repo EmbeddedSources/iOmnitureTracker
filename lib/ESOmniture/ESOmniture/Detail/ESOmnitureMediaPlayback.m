@@ -106,14 +106,14 @@
    NSAssert( self.currentTimer == nil, @"ESOmniture previous timer should be stopped" );
 
    NSDate* fire_date_ = [ [ NSDate date ] dateByAddingTimeInterval: delay_ ];
-   
+
    NSTimer* timer_ = [ [ NSTimer alloc ] initWithFireDate: fire_date_
                                                  interval: 1.0
                                                    target: self
                                                  selector: @selector( fireTrackPoint: )
                                                  userInfo: nil
                                                   repeats: YES ];
-   
+
    self.currentTimer = timer_;
 
    [ [ NSRunLoop currentRunLoop ] addTimer: timer_ forMode: NSDefaultRunLoopMode ];
@@ -134,13 +134,16 @@
    if ( self.nextPointOffset >= self.length )
       return;
 
-   [ self.actions addObject: [ ESOmnitureMediaPlaybackAction playActionWithOffset: offset_ ] ];
-
    if ( !self.openTime )
    {
       self.openTime = [ NSDate date ];
+      [ self.actions addObject: [ ESOmnitureMediaPlaybackAction openActionWithOffset: offset_ ] ];
       [ self.delegate mediaPlayback: self
                     didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint openPoint ] ] ];
+   }
+   else
+   {
+      [ self.actions addObject: [ ESOmnitureMediaPlaybackAction playActionWithOffset: offset_ ] ];
    }
 
    [ self startTimerWithDelay: self.nextPointOffset - offset_ ];
@@ -165,36 +168,35 @@
                  didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint closePoint ] ] ];
 }
 
--(NSString*)videoReport
+-(NSString*)playbackTrack
 {
-   NSArray* report_info_ = [ NSArray arrayWithObjects: self.name
-                            , [ NSString stringWithFormat: @"%d", (int)self.length ]
-                            , self.playerName
-                            , [ NSString stringWithFormat: @"%d", (int)self.timePlayed ]
-                            , [ NSString stringWithFormat: @"%d", (int)[ self.openTime timeIntervalSince1970 ] ]
-                            , [ self.actions componentsJoinedByString: @"" ]
-                            , nil ];
-
-   return [ report_info_ componentsJoinedByString: @"--**--" ];
+   return [ NSString stringWithFormat: @"%@--**--%d--**--%@--**--%d--**--%d--**--%@"
+           , self.name
+           , (int)self.length
+           , self.playerName
+           , (int)self.timePlayed
+           , (int)[ self.openTime timeIntervalSince1970 ]
+           , [ self.actions componentsJoinedByString: @"" ]
+           ];
 }
 
 -(void)trackInOmniture:( ESOmniture* )omniture_
 {
    ESOmnitureMediaPlaybackAction* last_action_ = [ self.actions lastObject ];
-   
+
    NSMutableArray* new_actions_ = [ NSMutableArray array ];
 
    if ( ![ last_action_.name isEqualToString: ESOmnitureMediaStopActionName ] )
    {
       ESOmnitureMediaPlaybackAction* track_action_ = [ ESOmnitureMediaPlaybackAction trackActionWithOffset: self.offset ];
       [ self.actions addObject: track_action_ ];
-      [ omniture_ trackVideoReport: [ self videoReport ] ];
+      [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
 
       [ new_actions_ addObject: track_action_ ];
    }
    else
    {
-      [ omniture_ trackVideoReport: [ self videoReport ] ];
+      [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
    }
 
    self.actions = new_actions_;

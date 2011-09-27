@@ -28,6 +28,13 @@
    return self;
 }
 
+-(void)dealloc
+{
+   [ _name release ];
+
+   [ super dealloc ];
+}
+
 +(id)pointWithType:( ESOmnitureMediaTrackPointType )type_
 {
    return [ [ [ self alloc ] initWithType: type_

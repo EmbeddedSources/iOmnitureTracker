@@ -1,2 +1,5 @@
-1. Add unsupported variables
-2. Add media playback tracking
+1. Add all Omniture variables
+2. trackSeconds should track uninterrupted video duration
+
+Differences with Omniture SDK
+1. 0 means time interval 0 since start, not end of first second like in SDK

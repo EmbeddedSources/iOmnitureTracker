@@ -14,6 +14,9 @@ NSString* const ESOmnitureCustomLink = @"o";
 NSString* const ESOmnitureDownloadLink = @"d";
 NSString* const ESOmnitureExitLink = @"e";
 
+NSString* const ESOmnitureVideoReportStart = @"m_s";
+NSString* const ESOmnitureVideoReportOthers = @"m_o";
+
 @interface ESOmniture ()
 
 @property ( nonatomic, retain ) ESOmnitureContext* context;
@@ -296,10 +299,11 @@ variableOverrides:( NSDictionary* )variable_overrides_
 }
 
 -(void)trackVideoReport:( NSString* )video_report_
+             reportType:( NSString* )report_type_
 {
    ESOmnitureContext* previous_context_ = [ self swapContext: [ self.context contextWithVideoVariables ] ];
 
-   self.pe = @"m_o";//!!!Not only this action is sent
+   self.pe = report_type_;
    self.pev3 = video_report_;
 
    [ self track ];

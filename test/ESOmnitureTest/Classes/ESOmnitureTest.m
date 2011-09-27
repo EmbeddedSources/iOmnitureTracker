@@ -69,58 +69,72 @@
 
 @interface ESOmnitureTest : GHTestCase
 
+@property ( nonatomic, retain ) ESOmniture* omniture;
+
 @end
 
 @implementation ESOmnitureTest
 
--(void)testDelegate
+@synthesize omniture = _omniture;
+
+-(void)dealloc
+{
+   [ _omniture release ];
+
+   [ super dealloc ];
+}
+
+-(void)setUp
 {
    ESOmniture* omniture_ = [ [ ESOmniture alloc ] init ];
 
-   omniture_.debugTracking = YES;
-   omniture_.visitorNamespace = @"RequiredVariable";
-   
-   omniture_.delegate = [ OmnitureDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"var1", @"eVar1"
-                                                                    , @"p1", @"prop1"
-                                                                    , nil ] ];
-   [ omniture_ track ];
-   
-   GHAssertTrue( omniture_.eVar1 == nil && omniture_.prop1 == nil, @"Check use plugins NO" );
-   
    omniture_.usePlugins = YES;
-   
-   [ omniture_ track ];
-   
-   GHAssertTrue( [ omniture_.eVar1 isEqualToString: @"var1" ], @"Check eVar1 use plugins YES" );
+   omniture_.visitorNamespace = @"RequiredVariable";
 
-   GHAssertTrue( [ omniture_.prop1 isEqualToString: @"p1" ], @"Check prop1 use plugins YES" );
+   self.omniture = omniture_;
 
    [ omniture_ release ];
 }
 
+-(void)tearDown
+{
+   self.omniture = nil;
+}
+
+-(void)testDelegate
+{
+   self.omniture.usePlugins = NO;
+   self.omniture.delegate = [ OmnitureDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"var1", @"eVar1"
+                                                                        , @"p1", @"prop1"
+                                                                        , nil ] ];
+   [ self.omniture track ];
+   
+   GHAssertTrue( self.omniture.eVar1 == nil && self.omniture.prop1 == nil, @"Check use plugins NO" );
+   
+   self.omniture.usePlugins = YES;
+   
+   [ self.omniture track ];
+   
+   GHAssertTrue( [ self.omniture.eVar1 isEqualToString: @"var1" ], @"Check eVar1 use plugins YES" );
+
+   GHAssertTrue( [ self.omniture.prop1 isEqualToString: @"p1" ], @"Check prop1 use plugins YES" );
+}
+
 -(void)testVariablesOverride
 {
-   ESOmniture* omniture_ = [ [ ESOmniture alloc ] init ];
-
-   omniture_.debugTracking = YES;
-   omniture_.visitorNamespace = @"RequiredVariable";
-
-   omniture_.eVar1 = @"initVar1";
-   omniture_.prop2 = @"initProp2";
+   self.omniture.eVar1 = @"initVar1";
+   self.omniture.prop2 = @"initProp2";
 
    NSDictionary* context_ = [ NSDictionary dictionaryWithObjectsAndKeys: @"var1", @"eVar1"
                              , @"p2", @"prop2"
                              , nil ];
 
-   omniture_.usePlugins = YES;
-   omniture_.delegate = [ OmnitureCheckDelegate delegateWithDictionary: context_ ];
+   self.omniture.delegate = [ OmnitureCheckDelegate delegateWithDictionary: context_ ];
 
-   GHAssertNoThrow( [ omniture_ track: context_ ], @"Context should be applied" );
+   GHAssertNoThrow( [ self.omniture track: context_ ], @"Context should be applied" );
 
-   GHAssertTrue( [ omniture_.eVar1 isEqualToString: @"initVar1" ], @"Check initial value eVar1 (%@)", omniture_.eVar1 );
-   GHAssertTrue( [ omniture_.prop2 isEqualToString: @"initProp2" ], @"Check initial value prop2 (%@)", omniture_.prop2 );
-
-   [ omniture_ release ];
+   GHAssertTrue( [ self.omniture.eVar1 isEqualToString: @"initVar1" ], @"Check initial value eVar1 (%@)", self.omniture.eVar1 );
+   GHAssertTrue( [ self.omniture.prop2 isEqualToString: @"initProp2" ], @"Check initial value prop2 (%@)", self.omniture.prop2 );
 }
 
 -(void)testLinkTypes
@@ -140,40 +154,31 @@
 
 -(void)testTrackLink
 {
-   ESOmniture* omniture_ = [ [ ESOmniture alloc ] init ];
+   self.omniture.eVar1 = @"testVar1";
 
-   omniture_.debugTracking = YES;
-   omniture_.visitorNamespace = @"RequiredVariable";
+   self.omniture.delegate = [ OmnitureCheckDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"var1", @"eVar1"
+                                                                             , @"lnk_d", @"pe"
+                                                                             , @"http://somehost.com", @"pev1"
+                                                                             , @"Link Name", @"pev2"
+                                                                             , nil ] ];
 
-   omniture_.eVar1 = @"testVar1";
-
-   omniture_.usePlugins = YES;
-   omniture_.delegate = [ OmnitureCheckDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"var1", @"eVar1"
-                                                                         , @"lnk_d", @"pe"
-                                                                         , @"http://somehost.com", @"pev1"
-                                                                         , @"Link Name", @"pev2"
-                                                                         , nil ] ];
-
-   GHAssertNoThrow( [ omniture_ trackLink: @"http://somehost.com"
-                                 linkType: ESOmnitureDownloadLink
-                                 linkName: @"Link Name"
-                        variableOverrides: [ NSDictionary dictionaryWithObject: @"var1" forKey: @"eVar1" ] ]
+   GHAssertNoThrow( [ self.omniture trackLink: @"http://somehost.com"
+                                     linkType: ESOmnitureDownloadLink
+                                     linkName: @"Link Name"
+                            variableOverrides: [ NSDictionary dictionaryWithObject: @"var1" forKey: @"eVar1" ] ]
                    , @"Context should be applied" );
 
-   GHAssertTrue( [ omniture_.eVar1 isEqualToString: @"testVar1" ], @"Check initial value eVar1 (%@)", omniture_.eVar1 );
+   GHAssertTrue( [ self.omniture.eVar1 isEqualToString: @"testVar1" ], @"Check initial value eVar1 (%@)", self.omniture.eVar1 );
 
-   omniture_.delegate = [ OmnitureCheckDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"lnk_o", @"pe"
-                                                                         , [ NSNull null ], @"pev1"
-                                                                         , [ NSNull null ], @"pev2"
-                                                                         , nil ] ];
+   self.omniture.delegate = [ OmnitureCheckDelegate delegateWithDictionary: [ NSDictionary dictionaryWithObjectsAndKeys: @"lnk_o", @"pe"
+                                                                             , [ NSNull null ], @"pev1"
+                                                                             , [ NSNull null ], @"pev2"
+                                                                             , nil ] ];
 
-   GHAssertNoThrow( [ omniture_ trackLink: nil
-                                 linkType: ESOmnitureCustomLink
-                                 linkName: nil ]
+   GHAssertNoThrow( [ self.omniture trackLink: nil
+                                     linkType: ESOmnitureCustomLink
+                                     linkName: nil ]
                    , @"Context should be applied" );
-   
-
-   [ omniture_ release ];
 }
 
 @end

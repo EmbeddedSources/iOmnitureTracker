@@ -244,7 +244,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/appledoc \\\n--keep-undocumented-members \\\n--keep-undocumented-objects \\\n--logformat xcode \\\n--exit-threshold 2 \\\n--ignore Detail \\\n--ignore .m \\\n--project-name ESOmniture \\\n--project-company \"Embedded Sources\" \\\n--company-id com.embeddedsources \\\n--output ./appledoc .\n";
+			shellScript = "/usr/local/bin/appledoc \\\n--keep-undocumented-members \\\n--keep-undocumented-objects \\\n--logformat xcode \\\n--exit-threshold 2 \\\n--ignore Detail \\\n--ignore .m \\\n--project-name ESOmniture \\\n--project-company \"Embedded Sources\" \\\n--company-id com.embeddedsources \\\n--no-repeat-first-par \\\n--output ./appledoc .\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

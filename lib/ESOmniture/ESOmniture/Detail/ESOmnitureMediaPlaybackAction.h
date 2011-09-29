@@ -1,12 +1,15 @@
 #import <Foundation/Foundation.h>
 
-extern NSString* const ESOmnitureMediaPlayActionName;
-extern NSString* const ESOmnitureMediaStopActionName;
-extern NSString* const ESOmnitureMediaTrackActionName;
+typedef enum
+{
+   ESOmnitureMediaActionPlay = 'S'
+   , ESOmnitureMediaActionStop = 'E'
+   , ESOmnitureMediaActionTrack = 'L'
+} ESOmnitureMediaActionType;
 
 @interface ESOmnitureMediaPlaybackAction : NSObject
 
-@property ( nonatomic, retain, readonly ) NSString* name;
+@property ( nonatomic, assign, readonly ) ESOmnitureMediaActionType type;
 @property ( nonatomic, assign, readonly ) NSTimeInterval offset;
 @property ( nonatomic, retain, readonly ) NSString* reportType;
 

@@ -183,23 +183,16 @@
 -(void)trackInOmniture:( ESOmniture* )omniture_
 {
    ESOmnitureMediaPlaybackAction* last_action_ = [ self.actions lastObject ];
+   ESOmnitureMediaPlaybackAction* next_action_ = nil;
 
-   NSMutableArray* new_actions_ = [ NSMutableArray array ];
-
-   if ( ![ last_action_.name isEqualToString: ESOmnitureMediaStopActionName ] )
+   if ( last_action_.type != ESOmnitureMediaActionStop )
    {
-      ESOmnitureMediaPlaybackAction* track_action_ = [ ESOmnitureMediaPlaybackAction trackActionWithOffset: self.offset ];
-      [ self.actions addObject: track_action_ ];
-      [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
-
-      [ new_actions_ addObject: track_action_ ];
-   }
-   else
-   {
-      [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
+      next_action_ = [ ESOmnitureMediaPlaybackAction trackActionWithOffset: self.offset ];
+      [ self.actions addObject: next_action_ ];
    }
 
-   self.actions = new_actions_;
+   [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
+   self.actions = [ NSMutableArray arrayWithObjects: next_action_, nil ];
 }
 
 #pragma mark NSTimer

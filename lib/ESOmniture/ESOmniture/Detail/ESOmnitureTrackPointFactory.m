@@ -65,19 +65,4 @@ enum
    return points_;
 }
 
--(NSDictionary*)pointsWithDuration:( NSTimeInterval )duration_
-{
-   if ( duration_ == 0.0 )
-      return nil;
-
-   NSMutableDictionary* points_ = [ NSMutableDictionary dictionary ];
-   for ( NSTimeInterval offset_ = duration_; offset_ < self.length; offset_ += duration_ )
-   {
-      [ points_ setObject: [ ESOmnitureMediaTrackPoint secondsPoint ]
-                   forKey: [ NSNumber numberWithDouble: offset_ ] ];
-   }
-
-   return points_;
-}
-
 @end

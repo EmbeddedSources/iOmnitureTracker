@@ -25,14 +25,6 @@
                                                , nil ];
    
    GHAssertTrue( [ milestone_points_ isEqualToDictionary: expected_milestone_result_ ], @"Check miletstone points parse" );
-   
-   NSDictionary* second_points_ = [ factory_ pointsWithDuration: 50.0 ];
-   NSDictionary* expected_second_result_ = [ NSDictionary dictionaryWithObjectsAndKeys: [ ESOmnitureMediaTrackPoint secondsPoint ], [ NSNumber numberWithDouble: 50.0 ]
-                                            , [ ESOmnitureMediaTrackPoint secondsPoint ], [ NSNumber numberWithDouble: 100.0 ]
-                                            , [ ESOmnitureMediaTrackPoint secondsPoint ], [ NSNumber numberWithDouble: 150.0 ]
-                                            , nil ];
-   
-   GHAssertTrue( [ second_points_ isEqualToDictionary: expected_second_result_ ], @"Check second points generation" );
 }
 
 @end

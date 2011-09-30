@@ -21,7 +21,6 @@
 @property ( nonatomic, assign ) NSTimeInterval nextPointOffset;
 @property ( nonatomic, assign ) NSTimer* currentTimer;
 
-
 @end
 
 
@@ -64,7 +63,7 @@
    self.playerName = player_name_;
    self.length = length_;
    self.trackInfo = info_;
-   
+
    return self;
 }
 
@@ -168,7 +167,7 @@
                  didMoveToPoints: [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint closePoint ] ] ];
 }
 
--(NSString*)playbackTrack
+-(NSString*)trackMessage
 {
    return [ NSString stringWithFormat: @"%@--**--%d--**--%@--**--%d--**--%d--**--%@"
            , self.name
@@ -191,7 +190,7 @@
       [ self.actions addObject: next_action_ ];
    }
 
-   [ omniture_ trackVideoReport: [ self playbackTrack ] reportType: [ last_action_ reportType ] ];
+   [ omniture_ trackVideoReport: [ self trackMessage ] reportType: [ last_action_ reportType ] ];
    self.actions = [ NSMutableArray arrayWithObjects: next_action_, nil ];
 }
 
@@ -215,7 +214,7 @@
       self.nextPointOffset += 1.0;
    }
 
-   NSSet* points_ = [ self.trackInfo trackPointsForOffset: self.offset ];
+   NSSet* points_ = [ self.trackInfo trackPointsForOffset: self.offset timePlayed: self.timePlayed ];
    [ self.delegate mediaPlayback: self didMoveToPoints: points_ ];
 }
 

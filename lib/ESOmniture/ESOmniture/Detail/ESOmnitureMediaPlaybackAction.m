@@ -69,7 +69,7 @@
 -(NSString*)description
 {
    //offset 1 second = 0 second in omniture format
-   NSTimeInterval omniture_offset_ = self.offset > 1.0 ? self.offset - 1.0 : self.offset;
+   NSTimeInterval omniture_offset_ = self.offset >= 1.0 ? self.offset - 1.0 : self.offset;
 
    return [ NSString stringWithFormat: @"%c%d", self.type, (int)omniture_offset_ ];
 }

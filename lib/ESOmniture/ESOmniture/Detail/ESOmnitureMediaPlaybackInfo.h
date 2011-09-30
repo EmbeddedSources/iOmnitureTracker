@@ -9,6 +9,7 @@
                  milestones:( NSString* )milestones_
                trackSeconds:( NSTimeInterval )track_seconds_;
 
--(NSSet*)trackPointsForOffset:( NSTimeInterval )offset_;
+-(NSSet*)trackPointsForOffset:( NSTimeInterval )offset_
+                   timePlayed:( NSTimeInterval )time_played_;
 
 @end

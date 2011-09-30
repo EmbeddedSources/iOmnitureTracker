@@ -2,7 +2,8 @@
 
 typedef enum
 {
-   ESOmnitureMediaActionPlay = 'S'
+   ESOmnitureMediaActionUndefined
+   , ESOmnitureMediaActionPlay = 'S'
    , ESOmnitureMediaActionStop = 'E'
    , ESOmnitureMediaActionTrack = 'L'
 } ESOmnitureMediaActionType;

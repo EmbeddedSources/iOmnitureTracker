@@ -138,12 +138,12 @@
 
    NSArray* reports_ = [ NSArray arrayWithObjects: [ NSString stringWithFormat: report_format_, 0, (int)timestamp_, @"S1L1" ]//Start: 2
                         , [ NSString stringWithFormat: report_format_, 1, (int)timestamp_, @"L1L2" ]//Cue Point: 3:first
-                        , [ NSString stringWithFormat: report_format_, 3, (int)timestamp_, @"L2L4" ]//Second: 5
-                        , [ NSString stringWithFormat: report_format_, 4, (int)timestamp_, @"L4L5" ]//Cue Point: 6:second
-                        , [ NSString stringWithFormat: report_format_, 7, (int)timestamp_, @"L5L8" ]//Milestone: 50
-                        , [ NSString stringWithFormat: report_format_, 8, (int)timestamp_, @"L8L9" ]//Second: 10
-                        , [ NSString stringWithFormat: report_format_, 13, (int)timestamp_, @"L9L14" ]//Second: 15
-                        , [ NSString stringWithFormat: report_format_, 16, (int)timestamp_, @"L14E17" ]//End: 18
+                        , [ NSString stringWithFormat: report_format_, 4, (int)timestamp_, @"L2L5" ]//Cue Point: 6:second
+                        , [ NSString stringWithFormat: report_format_, 5, (int)timestamp_, @"L5L6" ]//Second: 5
+                        , [ NSString stringWithFormat: report_format_, 7, (int)timestamp_, @"L6L8" ]//Milestone: 50
+                        , [ NSString stringWithFormat: report_format_, 10, (int)timestamp_, @"L8L11" ]//Second: 10
+                        , [ NSString stringWithFormat: report_format_, 15, (int)timestamp_, @"L11L16" ]//Second: 15
+                        , [ NSString stringWithFormat: report_format_, 16, (int)timestamp_, @"L16E17" ]//End: 18
                         , nil ];
 
    self.omniture.delegate = [ ESOmnitureMediaCheckDelegate checkDelegateWithReports: reports_                                                                           
@@ -188,7 +188,7 @@
    NSTimeInterval timestamp_ = [ [ NSDate date ] timeIntervalSince1970 ];
    
    NSArray* reports_ = [ NSArray arrayWithObjects: [ NSString stringWithFormat: report_format_, 0, (int)timestamp_, @"S0L0" ]//Start: 0
-                        , [ NSString stringWithFormat: report_format_, 4, (int)timestamp_, @"L0E4S13L14" ]//Second: 15
+                        , [ NSString stringWithFormat: report_format_, 4, (int)timestamp_, @"L0E4S13L14" ]//Second: 4
                         , [ NSString stringWithFormat: report_format_, 7, (int)timestamp_, @"L14E17" ]//End
                         , nil ];
 
@@ -198,7 +198,7 @@
 
    //trackAtCuePoints = NO by default
    self.omniture.Media.cuePoints = @"2:first";
-   self.omniture.Media.trackSeconds = 15.0;
+   self.omniture.Media.trackSeconds = 4.0;
 
    [ self.omniture.Media open: @"VideoActions" length: 18.0 playerName: @"PlayerName" ];
    [ self.omniture.Media play: @"VideoActions" offset: 0.0 ];

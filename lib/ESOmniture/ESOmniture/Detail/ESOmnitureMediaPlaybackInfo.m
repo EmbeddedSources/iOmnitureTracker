@@ -5,6 +5,7 @@
 
 @interface ESOmnitureMediaPlaybackInfo ()
 
+@property ( nonatomic, assign ) NSTimeInterval trackSeconds;
 @property ( nonatomic, retain ) NSMutableDictionary* info;
 
 -(void)addTrackPoints:( NSDictionary* )points_;
@@ -16,6 +17,7 @@
 
 @implementation ESOmnitureMediaPlaybackInfo
 
+@synthesize trackSeconds = _track_seconds;
 @synthesize info = _info;
 
 -(void)dealloc
@@ -25,13 +27,14 @@
    [ super dealloc ];
 }
 
--(id)init
+-(id)initWithTrackSeconds:( NSTimeInterval )track_seconds_
 {
    if ( !( self = [ super init ] ) )
       return nil;
-   
+
+   self.trackSeconds = track_seconds_;
    self.info = [ NSMutableDictionary dictionary ];
-   
+
    return self;
 }
 
@@ -40,11 +43,10 @@
                  milestones:( NSString* )milestones_
                trackSeconds:( NSTimeInterval )track_seconds_
 {
-   ESOmnitureMediaPlaybackInfo* info_ = [ [ self alloc ] init ];
-   ESOmnitureTrackPointFactory* facory_ = [ ESOmnitureTrackPointFactory factoryWithLength: length_ ];
-   [ info_ addTrackPoints: [ facory_ pointsWithCuePointsValue: cue_points_ ] ];
-   [ info_ addTrackPoints: [ facory_ pointsWithMilestoneValue: milestones_ ] ];
-   [ info_ addTrackPoints: [ facory_ pointsWithDuration: track_seconds_ ] ];
+   ESOmnitureMediaPlaybackInfo* info_ = [ [ self alloc ] initWithTrackSeconds: track_seconds_ ];
+   ESOmnitureTrackPointFactory* factory_ = [ ESOmnitureTrackPointFactory factoryWithLength: length_ ];
+   [ info_ addTrackPoints: [ factory_ pointsWithCuePointsValue: cue_points_ ] ];
+   [ info_ addTrackPoints: [ factory_ pointsWithMilestoneValue: milestones_ ] ];
    return [ info_ autorelease ];
 }
 
@@ -79,19 +81,28 @@
    }
 }
 
--(NSSet*)trackPointsForOffset:( NSTimeInterval )offset_
+-(BOOL)shouldTrackTimePlayed:( NSTimeInterval )time_played_
 {
-   NSSet* points_ = [ self.info objectForKey: [ self keyForOffset: offset_ ] ];
-   
-   if ( !points_ )
+   if ( self.trackSeconds <= 0.0 || time_played_ == 0.0 )
+      return NO;
+
+   return fmod( time_played_, self.trackSeconds ) == 0.0;
+}
+
+-(NSSet*)trackPointsForOffset:( NSTimeInterval )offset_
+                   timePlayed:( NSTimeInterval )time_played_
+{
+   NSMutableSet* points_ = [ NSMutableSet setWithObject: [ ESOmnitureMediaTrackPoint monitorPoint ] ];
+   NSSet* predefined_points_ = [ self.info objectForKey: [ self keyForOffset: offset_ ] ];
+
+   [ points_ unionSet: predefined_points_ ];
+
+   if ( [ self shouldTrackTimePlayed: time_played_ ] )
    {
-      return [ NSSet setWithObject: [ ESOmnitureMediaTrackPoint monitorPoint ] ];
+      [ points_ addObject: [ ESOmnitureMediaTrackPoint secondsPoint ] ];
    }
-   
-   NSMutableSet* all_points_ = [ NSMutableSet setWithSet: points_ ];
-   [ all_points_ addObject: [ ESOmnitureMediaTrackPoint monitorPoint ] ];
-   
-   return all_points_;
+
+   return points_;
 }
 
 @end

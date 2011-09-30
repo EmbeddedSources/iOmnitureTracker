@@ -12,9 +12,9 @@
    ESOmnitureMediaPlaybackInfo* playback_ = [ ESOmnitureMediaPlaybackInfo playbackInfoWithLength: 100.0
                                                                                        cuePoints: @"10:ten,30:thirty,60:sixty"
                                                                                       milestones: @"10,50,60"
-                                                                                    trackSeconds: 20 ];
+                                                                                    trackSeconds: 12.5 ];
    
-   NSSet* points_10_ = [ playback_ trackPointsForOffset: 10.0 ];
+   NSSet* points_10_ = [ playback_ trackPointsForOffset: 10.0 timePlayed: 12.0 ];
    NSSet* expected_points_10_ = [ NSSet setWithObjects: [ ESOmnitureMediaTrackPoint monitorPoint ]
                                  , [ ESOmnitureMediaTrackPoint cuePointWithName: @"ten" ]
                                  , [ ESOmnitureMediaTrackPoint pointWithMilestone: 10.0 ]
@@ -22,12 +22,12 @@
    
    GHAssertTrue( [ points_10_ isEqualToSet: expected_points_10_ ], @"Check points with offset 10" );
    
-   NSSet* points_35_ = [ playback_ trackPointsForOffset: 35.0 ];
-   NSSet* expected_points_35_ = [ NSSet setWithObjects: [ ESOmnitureMediaTrackPoint monitorPoint ], nil ];
+   NSSet* points_35_ = [ playback_ trackPointsForOffset: 35.0 timePlayed: 25.0 ];
+   NSSet* expected_points_35_ = [ NSSet setWithObjects: [ ESOmnitureMediaTrackPoint monitorPoint ], [ ESOmnitureMediaTrackPoint secondsPoint ], nil ];
    
    GHAssertTrue( [ points_35_ isEqualToSet: expected_points_35_ ], @"Check points with offset 35" );
    
-   NSSet* points_60_ = [ playback_ trackPointsForOffset: 60.0 ];
+   NSSet* points_60_ = [ playback_ trackPointsForOffset: 60.0 timePlayed: 37.5 ];
    NSSet* expected_points_60_ = [ NSSet setWithObjects: [ ESOmnitureMediaTrackPoint monitorPoint ]
                                  , [ ESOmnitureMediaTrackPoint cuePointWithName: @"sixty" ]
                                  , [ ESOmnitureMediaTrackPoint pointWithMilestone: 60.0 ]

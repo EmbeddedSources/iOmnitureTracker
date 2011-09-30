@@ -6,6 +6,5 @@
 
 -(NSDictionary*)pointsWithMilestoneValue:( NSString* )milestone_;
 -(NSDictionary*)pointsWithCuePointsValue:( NSString* )cue_points_;
--(NSDictionary*)pointsWithDuration:( NSTimeInterval )duration_;
 
 @end
